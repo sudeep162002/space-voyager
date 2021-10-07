@@ -2,10 +2,25 @@ import {render,screen,cleanup} from '@testing-library/react';
 import App from '../App';
 import Error from '../components/Error'
 import  ReactDOM from 'react-dom';
-import react from 'react';
+
 import {isTSAnyKeyword } from '@babel/types';
 
 import 'jest-canvas-mock';
+
+
+
+
+
+
+import '@testing-library/jest-dom/extend-expect';
+
+
+
+
+
+import react from 'react';
+
+import renderer from 'react-test-renderer'
 
 afterEach(()=>{
     cleanup();
@@ -51,6 +66,16 @@ test ('error existance verification',()=>{
     const error=screen.getByTestId("error");
     expect (error).toBeInTheDocument;
 } )
+
+
+test ('deepbox1',()=>{
+    render(<App/>);
+    const deepbox1=screen.getByTestId("deepbox1");
+    expect (deepbox1).toBeInTheDocument;
+} )
+
+
+
 
 
 
