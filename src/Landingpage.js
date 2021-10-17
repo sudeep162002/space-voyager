@@ -1,6 +1,6 @@
 import React from "react";
 import img1 from "./components/img1.png";
-import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Particles from "react-particles-js";
 import App from "./App";
 import "./components/index.css";
@@ -8,7 +8,18 @@ import IssMap from "./components/iss-map/IssMap.js";
 import "./Landingpage.css";
 import WelcomePage from "./components/WelcomePage";
 import Satellite from "./components/satellite/Satellite";
-import Apod from './components/apod/Apod';
+import Apod from "./components/apod/Apod";
+import Tilt from "react-parallax-tilt";
+
+
+const scrollToBottom = () => {
+  window.scrollTo({
+    top: document.documentElement.scrollHeight,
+    behavior: "auto",
+    /* you can also use 'auto' behaviour
+		in place of 'smooth' */
+  });
+};
 const LandingPage = () => {
   return (
     <>
@@ -24,6 +35,7 @@ const LandingPage = () => {
           <h1> Space Voyager </h1>
 
           <p> Explore the space at fingertips now </p>
+         
         </div>
       </div>
       <Particles
@@ -79,27 +91,49 @@ const LandingPage = () => {
       />
       <Router>
         <div className="cardblock">
-          <Link className="card__category" to="/">
-          <img src="../images/home.png" id="navimg" alt="mkdv" />
+          <Tilt>
+          <Link className="card__category" to="/" onClick={scrollToBottom}>
+            <img src="../images/home.png" id="navimg" alt="mkdv" />
+
             <span className="page1">Home</span>
           </Link>
-          <Link className="card__category" to="/planets">
-          <img src="../images/planetexp.jpg" alt="mkdv" />
+          </Tilt>
+
+<Tilt>
+          <Link
+            className="card__category"
+            to="/planets"
+            onClick={scrollToBottom}
+          >
+            <img src="../images/planetexp.jpg" alt="mkdv" />
             <span className="page1"> Explore Planets </span>
           </Link>
-
-          <Link className="card__category" to="/iss">
-          <img src="../images/iss.jpg" alt="mkdv" />
+          </Tilt>
+          
+          <Tilt>
+          <Link className="card__category" to="/iss" onClick={scrollToBottom}>
+            <img src="../images/iss.jpg" alt="mkdv" />
             <span className="page2"> ISS Live Location </span>
           </Link>
-          <Link className="card__category" to="/satellite">
-          <img src="../images/satellite.jpg" alt="mkdv" />
+          </Tilt>
+
+          <Tilt>
+          <Link
+            className="card__category"
+            to="/satellite"
+            onClick={scrollToBottom}
+          >
+            <img src="../images/satellite.jpg" alt="mkdv" />
             <span class="page2"> Satellites </span>
           </Link>
-          <Link className="card__category" to="/apod">
-          <img src="../images/astronomypic.jpg" alt="mkdv" />
+          </Tilt>
+
+          <Tilt>
+          <Link className="card__category" to="/apod" onClick={scrollToBottom}>
+            <img src="../images/astronomypic.jpg" alt="mkdv" />
             <span class="page2"> Apod </span>
           </Link>
+          </Tilt>
         </div>
         <Route exact path="/" component={WelcomePage} />
         <Route exact path="/planets" component={App} />
@@ -110,6 +144,12 @@ const LandingPage = () => {
         <div data-testid="footer" className="end">
           <h2 data-testid="footerText">
             {" "}
+            <div className="github-button">
+            <a className="github" href="https://github.com/space-voyager-21/space-voyager" target="_blank">
+              <img src="../images/github-img.png" />
+
+              </a>
+            </div>
             Made with 💗 in React by{" "}
             <a href="https://mohittk.github.io"> Mohit </a>
           </h2>
